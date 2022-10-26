@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery的使用</title>
+  <script src="jQuery/jquery-3.6.1.js"></script>
+  <style>
+    #banner-message{
+      display:none;
+    }
+  </style>
+  <!-- <link rel="stylesheet" href="css/default.css"> -->
+  <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  
+  <h2 id="banner-message">获取天气预报</h2>
+
+
+  <ul class="card-list">
+    <li class="card">
+      <div class="card-color color-rain">
+        <div class="rain"></div>
+      </div>
+      <div class="card-info">
+        <p>63 ℉</p>
+        <p>low of 61 ℉</p>
+      </div>
+    </li>
+  </ul>    
+
+  <!-- <button class="continue1">Click me</button>
+
+  <div id="button-container">
+    <button class="continue2">Click me</button>
+    <button class="continue3">Click me</button>
+  </div> -->
+
+  <script>
+    $(function(){
+      // $( "button.continue" ).html( "Next Step..." ) 
+
+      // var hiddenBox = $( "#banner-message" );
+      // $( "#button-container button" ).on( "click", function( event ) {
+      //   hiddenBox.toggle()
+      // });
+
+
+      $.ajax({
+        url: "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=43656176&appsecret=I42og6Lm&ext=&cityid=&city=",
+        success: function( result ) {
+          // console.log(result)
+          result['data'].forEach(element => {
+            var wea = 'sunny'
+            if (element.wea.indexOf('雨') != -1) 
+              wea = 'rain'
+            else if (element.wea.indexOf('云') != -1 || element.wea.indexOf('阴') != -1)
+              wea = 'snow'  /*cloudy*/
+            var licard = $('<li class="card"></li>')
+
+            var div1 = $(`<div class="card-color color-${wea}"></div>`)
+            div1.append(`<div class="${wea}"></div>`)
+
+            var div2 = $('<div class="card-info"></div>')
+            div2.append(`<p>${element.tem} &#8451;</p>`)
+            div2.append(`<p>low of ${element.tem2} &#8451;</p>`)
+
+            licard.append(div1).append(div2)
+            $('.card-list').append(licard)
+          });
+        }
+      });
+    })
+  </script>
+</body>
+</html>
