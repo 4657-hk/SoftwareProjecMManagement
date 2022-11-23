@@ -4,13 +4,13 @@ export default class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-		items: [],
-		text: '',
-	}
+      items: [],
+      text: '',
+    }
   }
   render() {
     return (
-      <div>
+      <div style={{padding:"10 0 0 30"}}>
         <h3>TODO</h3>
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
@@ -24,7 +24,7 @@ export default class TodoApp extends React.Component {
             value={this.state.text}
           />
           <br />
-          <button>
+          <button style={{marginTop:"10px"}}>
             Add #{this.state.items.length + 1}
           </button>
         </form>
