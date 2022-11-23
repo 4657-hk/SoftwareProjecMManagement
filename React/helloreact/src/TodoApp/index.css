@@ -1,0 +1,18 @@
+.App-main {
+	padding: 10px;
+	border: solid 1px silver;
+	width: 300px;
+	margin: 10% 20%;
+}
+
+.add {
+	float: right;
+}
+
+.form {
+	margin-left: 30px;
+}
+
+.ip1 {
+	margin-left: 45px;
+}

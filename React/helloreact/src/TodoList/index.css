@@ -1,0 +1,17 @@
+.list-li {
+	border: 1px orange solid;
+	margin-top: 1px;
+}
+
+li button{
+	float: right;
+	display: none;
+}
+
+li:hover button{
+	display: block;
+}
+
+li:hover {
+	background-color: antiquewhite;
+}
