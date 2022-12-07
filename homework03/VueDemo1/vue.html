@@ -1,0 +1,22 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+	{{ message }}
+	<h1 v-if="type === 'A'">A</h1>
+</div>
+
+<script>
+  const { createApp } = Vue
+  
+  const app = createApp({
+    data() {
+      return {
+        message: 'Hello Vue!',
+		id: 'container',
+		isActive1: true,
+		isActive2: true,
+		type: 'A',
+      }
+    }
+  }).mount('#app')
+</script>
