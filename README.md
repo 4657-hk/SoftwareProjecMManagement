@@ -1,6 +1,6 @@
 # 许宏凯的web前端小仓库
 
-使用须知：
+## 使用须知：
 
 - homework02 & homework03 的作业均在其目录下的helloreact或者helloVue文件下
 
