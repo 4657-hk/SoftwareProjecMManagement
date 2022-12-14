@@ -5,21 +5,9 @@ export default{
 	name: 'TodoApp',
 	data() {
 		return{
-			items: [
-				{
-					text: "one",
-					id: "001",
-					checked: true
-				},
-				{
-					text: "two",
-					id: "002",
-					checked: false
-				}
-				
-			],		
+
+			items: JSON.parse(localStorage.getItem('localTodos')) || [],
 			title: '',
-			checkedAll: false,		
 		}
 	},
 	components: {
@@ -86,12 +74,20 @@ export default{
 				// 	element.checked = checked
 				// });
 				// this.checkedAll = checked;
-				console.log('111');
 				this.items.forEach(element => {
 					element.checked = val
 				});
 			},
 		},
+
+		watch:{
+			items:{
+				deep: true,
+				handler(val){
+					localStorage.setItem('localTodos', JSON.stringify(val));
+				}
+			}
+		}
 }
 </script>
 
