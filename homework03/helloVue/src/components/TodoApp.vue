@@ -25,6 +25,22 @@ export default{
 	components: {
 		TodoList,
 	},
+	computed: {
+		checkedCount(){
+			return this.items.reduce((pre, current) => {
+				return pre + (current.checked ? 1 : 0)
+			},0);
+		},
+
+		checkAll: {
+			get(){
+				return this.checkedCount === this.items.length && this.items.length > 0
+			},
+			set(val){
+				this.AllTodo(val)
+			}
+		}
+	},
 	methods: {
 			//更改item的checked
 			checkTodo(id){
@@ -64,12 +80,16 @@ export default{
 			},
 
 			//完成全部
-			AllTodo(){
-				let checked = !this.checkedAll;
+			AllTodo(val){
+				// let checked = !this.checkedAll;
+				// this.items.forEach(element => {
+				// 	element.checked = checked
+				// });
+				// this.checkedAll = checked;
+				console.log('111');
 				this.items.forEach(element => {
-					element.checked = checked
+					element.checked = val
 				});
-				this.checkedAll = checked;
 			},
 		},
 }
@@ -79,11 +99,14 @@ export default{
 	<div class="App-main">
 		<h3>TODO</h3>
 		<TodoList :todos="items" :checkTodo="checkTodo" :deleteItem="deletetTodo"/>
-		<input class='ip1' type="checkbox" :defaultChecked="checkedAll" @change="AllTodo"/>全部完成
-		<button style="float: right;" @click="deleteChecked">
-			删除已完成
-		</button>
-		<br>
+		<div v-if="!items.length?false:true">
+			<!-- <input class='ip1' type="checkbox" :checked="checkedAll" @change="AllTodo"/>全部完成 {{checkedCount}} / 总数{{items.length}} -->
+			<input class='ip1' type="checkbox" v-model="checkAll"/>完成 {{checkedCount}} / 总数 {{items.length}}
+			<button style="float: right;" @click="deleteChecked">
+				删除已完成
+			</button>
+			<br><br>
+		</div>
 		<label>
 			What needs to be done?
 		</label>
@@ -91,6 +114,7 @@ export default{
 		<input
 		id="new-todo"
 		v-model = "title"
+		@keyup.enter="addTodo"
 		/>
 		<button class='add' @click="addTodo">
 			Add #{{this.items.length + 1}}
