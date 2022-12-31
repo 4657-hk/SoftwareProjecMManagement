@@ -7,3 +7,5 @@
 - homework02的build文件在其helloreact文件下，通过使用Open with Live Server打开build文件下的index.html即可使用
 
 - homework03的dist文件在其helloreact文件下，通过使用Open with Live Server打开dist文件下的index.html即可使用
+
+- homeworkFinal的dist文件就在该文件下，通过使用Open with Live Server打开dist文件下的index.html即可使用
